@@ -5,6 +5,7 @@ diveSync(process.cwd(),
       directories: false,
       all: false,
       recursive: true,
+      reverse: false,
       filter: function filter(path, dir) {
 //        if (dir) return true;
         return dir || /\.js$/i.test(path);

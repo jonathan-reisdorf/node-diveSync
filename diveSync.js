@@ -8,6 +8,7 @@ var diveSync = function(dir, opt, action) {
     recursive: true,
     all: false,
     directories: false,
+    reverse: false,
     filter: function filter() {
       return true;
     }
@@ -29,8 +30,14 @@ var diveSync = function(dir, opt, action) {
     // read the directory
     var list = fs.readdirSync(dir);
 
-    // for every file in the list
-    list.sort().some(function (file) {
+    list.sort();
+
+    if (opt.reverse) {
+      list.reverse();
+    }
+
+    // for every file in the list:
+    list.some(function (file) {
       if (opt.all || file[0] != '.') {
         // full path of that file
         var path = dir + '/' + file;
